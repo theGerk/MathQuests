@@ -28,12 +28,14 @@ namespace Permute
 			return output;
 		}
 
+		/*
+
 		public static IEnumerable<T[]> Permutations<T>(ISet<T> available) where T : IEquatable<T>
 		{
 			Stack<T> buildStack = new Stack<T>();
 			Stack<Hash
 		}
-			
+			*/
 		static void Main(string[] args)
 		{
 			var a = Permute(new HashSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8 }));

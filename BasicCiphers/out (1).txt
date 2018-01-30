@@ -1,0 +1,76 @@
+//Below is JavaScript Code using ECMA 6 and tested in NodeJS.
+
+/**
+ * Returns an array with all solutions for x in equation: a * x = b (mod n)
+ *
+ * @param {Number} a must be positive integer
+ * @param {Number} b must be positive integer
+ * @param {Number} n must be positive integer
+ * @returns {Array}
+ */
+function solve(a, b, n)
+{
+	//create output array to be populated with solutions
+	var output = [];
+
+	//iterate across all possible solutions
+	for (var guess = 0; guess < n; guess++)
+	{
+		//check if a possible solution is a solution
+		if ((guess * a) % n === (b % n))
+		{
+			//add to array if it is a solution
+			output.push(guess);
+		}
+	}
+
+	//return array now containing all posible solutions
+	return output;
+}
+
+/**
+ * prints out mutiplicative inverse for each number in mod m
+ *
+ * @param {Number} m must be a positive integer
+ * @returns {undefined}
+ */
+
+function printMultiplicativeInversesModM(m)
+{
+	//iterate across all values
+	for (var k = 0; k < m; k++)
+	{
+		//get solutions to k * x = 1 (mod m)
+		var inverses = solve(k, 1, m);
+		var print;	//will be what to print for inverse
+		if (inverses.length > 0)
+			print = '' + inverses[0]; //if it has any let print be the string version of the first inverse
+		else
+			print = 'no inverse';	//if it does not have an inverse let print be the string 'no inverse'
+
+		console.log(k + ':' + print);	//now print a message with k followed by colon followed by the print message (either the inverse or 'no inverse' string).
+	}
+}
+
+//call function and print all multiplicative inverses in mod 15.
+printMultiplicativeInversesModM(15);
+
+
+/* ------- output for above code ------- */
+/*
+0:no inverse
+1:1
+2:8
+3:no inverse
+4:4
+5:no inverse
+6:no inverse
+7:13
+8:2
+9:no inverse
+10:no inverse
+11:11
+12:no inverse
+13:7
+14:14
+*/
