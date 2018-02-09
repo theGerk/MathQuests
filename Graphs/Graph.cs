@@ -9,6 +9,5 @@ namespace Graphs
     public interface IVertex<T>
     {
 		ISet<IVertex<T>> Adjacencies { get; }
-
     }
 }

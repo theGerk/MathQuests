@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Primes", "Primes\Primes.csproj", "{4713E6DE-5BBE-46F8-BB9F-4D51A938636D}"
 EndProject
@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Networks", "Networks\Networ
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphs", "Graphs\Graphs.csproj", "{1E2B61B2-7F03-4A3D-A4AC-042CA6A13B63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cryptography", "Cryptography\Cryptography.csproj", "{740444DD-C249-47B0-8F92-FFD698D29B19}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "NumericalAnalysis", "NumericalAnalysis\NumericalAnalysis.rxproj", "{24B5FF02-2F6C-40C2-8C47-D71CB5A060F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -195,6 +199,30 @@ Global
 		{1E2B61B2-7F03-4A3D-A4AC-042CA6A13B63}.Release|x64.Build.0 = Release|Any CPU
 		{1E2B61B2-7F03-4A3D-A4AC-042CA6A13B63}.Release|x86.ActiveCfg = Release|Any CPU
 		{1E2B61B2-7F03-4A3D-A4AC-042CA6A13B63}.Release|x86.Build.0 = Release|Any CPU
+		{740444DD-C249-47B0-8F92-FFD698D29B19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{740444DD-C249-47B0-8F92-FFD698D29B19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{740444DD-C249-47B0-8F92-FFD698D29B19}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{740444DD-C249-47B0-8F92-FFD698D29B19}.Debug|x64.Build.0 = Debug|Any CPU
+		{740444DD-C249-47B0-8F92-FFD698D29B19}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{740444DD-C249-47B0-8F92-FFD698D29B19}.Debug|x86.Build.0 = Debug|Any CPU
+		{740444DD-C249-47B0-8F92-FFD698D29B19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{740444DD-C249-47B0-8F92-FFD698D29B19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{740444DD-C249-47B0-8F92-FFD698D29B19}.Release|x64.ActiveCfg = Release|Any CPU
+		{740444DD-C249-47B0-8F92-FFD698D29B19}.Release|x64.Build.0 = Release|Any CPU
+		{740444DD-C249-47B0-8F92-FFD698D29B19}.Release|x86.ActiveCfg = Release|Any CPU
+		{740444DD-C249-47B0-8F92-FFD698D29B19}.Release|x86.Build.0 = Release|Any CPU
+		{24B5FF02-2F6C-40C2-8C47-D71CB5A060F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24B5FF02-2F6C-40C2-8C47-D71CB5A060F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24B5FF02-2F6C-40C2-8C47-D71CB5A060F4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{24B5FF02-2F6C-40C2-8C47-D71CB5A060F4}.Debug|x64.Build.0 = Debug|Any CPU
+		{24B5FF02-2F6C-40C2-8C47-D71CB5A060F4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{24B5FF02-2F6C-40C2-8C47-D71CB5A060F4}.Debug|x86.Build.0 = Debug|Any CPU
+		{24B5FF02-2F6C-40C2-8C47-D71CB5A060F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24B5FF02-2F6C-40C2-8C47-D71CB5A060F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24B5FF02-2F6C-40C2-8C47-D71CB5A060F4}.Release|x64.ActiveCfg = Release|Any CPU
+		{24B5FF02-2F6C-40C2-8C47-D71CB5A060F4}.Release|x64.Build.0 = Release|Any CPU
+		{24B5FF02-2F6C-40C2-8C47-D71CB5A060F4}.Release|x86.ActiveCfg = Release|Any CPU
+		{24B5FF02-2F6C-40C2-8C47-D71CB5A060F4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

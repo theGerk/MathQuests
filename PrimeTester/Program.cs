@@ -19,7 +19,7 @@ namespace PrimeTester
 			}
 			sb.Length--;
 			sb.Append(']');
-			File.WriteAllText("output.txt", sb.ToString());
+			File.WriteAllText("..\\..\\output.txt", sb.ToString());
 		}
 	}
 }

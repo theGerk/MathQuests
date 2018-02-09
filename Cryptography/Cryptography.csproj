@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{045B0714-D3E8-496A-9788-D0628B46C8D1}</ProjectGuid>
+    <ProjectGuid>{740444DD-C249-47B0-8F92-FFD698D29B19}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>PrimeTester</RootNamespace>
-    <AssemblyName>PrimeTester</AssemblyName>
+    <RootNamespace>Cryptography</RootNamespace>
+    <AssemblyName>Cryptography</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,17 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Primes\Primes.csproj">
-      <Project>{4713e6de-5bbe-46f8-bb9f-4d51a938636d}</Project>
-      <Name>Primes</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
