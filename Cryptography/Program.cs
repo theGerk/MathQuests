@@ -7,15 +7,27 @@ using System.Threading.Tasks;
 
 namespace Cryptography
 {
-	class Program
+	static class Program
 	{
 		static void Main(string[] args)
 		{
-			BigInteger a = new BigInteger();
-			a = 10;
-			Console.WriteLine(a.GetType().GetProperty("IsZero").GetValue(a));
-			a = 0;
-			Console.WriteLine(typeof(BigInteger).GetProperty("IsZero").GetValue(a));
+		}
+
+		static string EnglishString(this BigInteger self)
+		{
+			StringBuilder sb = new StringBuilder();
+			while (self > 0) {
+				sb.Append((char)((int)(self % 100) + 'a'));
+				self /= 100;
+			}
+			return sb.ToString().Reverse();
+		}
+
+		public static string Reverse(this string s)
+		{
+			char[] charArray = s.ToCharArray();
+			Array.Reverse(charArray);
+			return new string(charArray);
 		}
 	}
 }

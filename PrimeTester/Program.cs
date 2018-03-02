@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Primes;
 using System.IO;
+using System.Numerics;
 
 namespace PrimeTester
 {
@@ -21,5 +22,8 @@ namespace PrimeTester
 			sb.Append(']');
 			File.WriteAllText("..\\..\\output.txt", sb.ToString());
 		}
+
+		static List<BigInteger> S = new List<BigInteger>();
+		static List<BigInteger> F = new List<BigInteger>();
 	}
 }

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{740444DD-C249-47B0-8F92-FFD698D29B19}</ProjectGuid>
+    <ProjectGuid>{BD22634E-2D59-4CB0-A197-1A8B64B8A24F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Cryptography</RootNamespace>
-    <AssemblyName>Cryptography</AssemblyName>
+    <RootNamespace>AdamHonorsQuickDirty</RootNamespace>
+    <AssemblyName>AdamHonorsQuickDirty</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,7 +34,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,10 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModClass.cs" />
+    <Compile Include="Matrix.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RSA.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

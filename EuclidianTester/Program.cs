@@ -19,12 +19,12 @@ namespace EuclidianTester
 		private List<uint> quotient = new List<uint>();
 		private List<uint> remainder = new List<uint>();
 
-		public EuclidianAlgorithm(uint a, uint b)
-		{
-			remainder.Add(a);
-			remainder.Add(b);
+		//public EuclidianAlgorithm(uint a, uint b)
+		//{
+		//	remainder.Add(a);
+		//	remainder.Add(b);
 
-			a = remainder
-		}
+		//	a = remainder
+		//}
 	}
 }
