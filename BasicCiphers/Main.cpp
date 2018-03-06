@@ -3,6 +3,45 @@
 #include <numeric>
 #include <vector>
 #include <algorithm>
+#include <cstdlib>
+
+size_t encrypt(const char* str);
+size_t flip(size_t number, size_t base);
+
+int main(int argc, const char** argv)
+{
+	for (size_t i = 1; i < argc; i++)
+		std::cout << encrypt(argv[i]);
+	return 0;
+}
+
+size_t encrypt(const char* str)
+{
+	size_t msg = 1;
+	for (const char* ptr = str; *ptr; ptr++)
+	{
+		msg *= 100;
+		if (*ptr >= 'a' && *ptr <= 'z')
+			msg += *ptr - 'a';
+		else if (*ptr >= 'A' && *ptr <= 'Z')
+			msg += *ptr - 'A';
+	}
+	msg *= 10;
+	msg += 1;
+	return flip(msg, 2);
+}
+
+size_t flip(size_t number, size_t base = 10)
+{
+	size_t output = 0;
+	while (number)
+	{
+		output *= base;
+		output += number % base;
+		number /= base;
+	}
+	return output;
+}
 
 const char LANGUAGE_SIZE = 26;
 
@@ -66,148 +105,148 @@ struct AlphineEntropyGuess {
 };
 
 
-int main()
-{
-	std::string ceaser;
-	std::string alphine;
-	std::string substitution;
-
-	std::string name1;
-	std::string name2;
-	std::string name3;
-	
-	//set strings
-	{
-		ceaser = "xbpztpeprilxiwndjlpailwxibpcxwpktstithitsndjadcvtcdjvwxrdbtidndjphpvgdlcrwxaslwdwphwpspexvwtpstsupiwtgxpbdastcdjvwcdlidbpztugxtcshxilphndjiwpiqgdztiwtctllddscdlxhpixbtudgrpgkxcvltwpktdcthpepcsdctgddiatiiwtgtqtrdbbtgrtqtilttcjh";
-		alphine = "osjjtrkxqjjkxqvdcgocgsxitrkueioejsxqfksfzdczrcuarcbcfyctorkfoebioqfoebciokftoexzijkttrkakforkizsazjkcfieorzxkiisitrkwsxkeikztqaksxsfzjkttrkdqwidxcfgvjqakxicfjsituqftrifkaibsbkxijktdkdkvcfsjkqvikkutrkqfjwkubkxqxcitrkkubkxqxqvcokoxksutsykvxqutrkzxkiikxqvzksjjsoycfgtrktrxkkgjsiiyfqditrstirkktqfarcorirkkudxqczkxkzvsftscjiqfoksfzibxkszctiqsitqoqpkxrkxvsokcvrkxrqxfwvkktbxqtxezktrkwoquktqirqarqaoqjzirkcisfzzeudjkttrkjsubsvvclctidksutrkqfjwkubkxqxcitrkkubkxqxqvcokoxksu";
-		substitution = "csoqeytonshgtqrhwjdnshonssmshjhyjeekasrwtqoryrjheoonsepgcjpsrkrojshosonsajxswqkthrorfcscsoqeytonatqynlsaorjhnrcbwsesaosweoassoeonsvqoosajhyasoasroetbaseocseehjynoejhthshjynolnsrkntoscerhwerdwqeoaseorqarhoedjontgeosaenscceeoassoeonrobtcctdcjpsroswjtqerayqvshotbjhejwjtqejhoshootcsrwgtqotrhtmsadnscvjhyuqseojthtnwthtorepdnrojejocsoqeytrhwvrpstqamjejojhonsattvonsdtvshltvsrhwytorcpjhytbvjlnscrhysctonsgscctdbtyonroaqfejoefrlpqkthonsdjhwtdkrhseonsgscctdevtpsonroaqfejoevqxxcsthonsdjhwtdkrhsecjlpswjoeothyqsjhotonsltahsaetbonssmshjhycjhysaswqkthonskttceonroeorhwjhwarjhecsobrccqkthjoefrlponsettoonrobrccebatvlnjvhsgeecjkkswfgonsosaarlsvrwsreqwwshcsrkrhwessjhyonrojodreretbotlotfsahjynolqacswthlsrftqoonsntqesrhwbsccrecsskrhwjhwsswonsasdjccfsojvsbtaonsgscctdevtpsonroecjwsercthyonseoassoaqffjhyjoefrlpqkthonsdjhwtdkrhseonsasdjccfsojvsonsasdjccfsojvsotkaskrasrbrlsotvssoonsbrlseonrogtqvssoonsasdjccfsojvsotvqawsarhwlasrosrhwojvsbtarcconsdtaperhwwrgetbnrhweonrocjborhwwatkruqseojththgtqakcrosojvsbtagtqrhwojvsbtavsrhwojvsgsobtarnqhwaswjhwsljejtherhwbtarnqhwaswmjejtherhwasmjejthefsbtasonsorpjhytbrotreorhwosrjhonsattvonsdtvshltvsrhwytorcpjhytbvjlnscrhysctrhwjhwsswonsasdjccfsojvsotdthwsawtjwrasrhwwtjwrasojvsotoqahfrlprhwwselshwonseorjadjonrfrcwektojhonsvjwwcstbvgnrjaonsgdjccergntdnjenrjajeyatdjhyonjhvgvtahjhyltrovgltccravtqhojhybjavcgotonslnjhvghslpojsajlnrhwvtwseofqoreesaoswfgrejvkcskjhonsgdjccergfqontdnjeraverhwcsyerasonjhwtjwraswjeoqafonsqhjmsaesjhrvjhqosonsasjeojvsbtawsljejtherhwasmjejthednjlnrvjhqosdjccasmsaesbtajnrmsphtdhonsvrccrcasrwgphtdhonsvrccnrmsphtdhonssmshjhyevtahjhyerbosahtthejnrmsvsreqaswtqovgcjbsdjonltbbssektthejphtdonsmtjlsewgjhydjonrwgjhybrccfshsrononsvqejlbatvrbraonsaattvetntdentqcwjkaseqvsrhwjnrmsphtdhonssgsercasrwgphtdhonsvrcconssgseonrobjzgtqjhrbtavqcroswknaresrhwdnshjrvbtavqcroswekardcjhythrkjhdnshjrvkjhhswrhwdajyycjhythonsdrcconshntdentqcwjfsyjhotekjotqorcconsfqooshwetbvgwrgerhwdrgerhwntdentqcwjkaseqvsrhwjnrmsphtdhonsravercasrwgphtdhonsvrccraveonrorasfarlscsoswrhwdnjosrhwfrasfqojhonscrvkcjynowtdhswdjoncjynofatdhnrjajejoksabqvsbatvrwaseeonrovrpsevsetwjyaseeraveonrocjsrcthyrorfcstadarkrftqorenrdcrhwentqcwjonshkaseqvsrhwntdentqcwjfsyjhenrccjergjnrmsythsrowqeponatqynhraatdeoassoerhwdrolnswonsevtpsonroajesebatvonskjksetbcthscgvshjhenjaoecssmsecsrhjhytqotbdjhwtdejentqcwnrmsfsshrkrjatbaryyswlcrdeelqoocjhyrlateeonsbcttaetbejcshoesrerhwonsrbosahtthonssmshjhyecsskeetksrlsbqccgevttonswfgcthybjhysaerecsskojaswtajovrcjhysaeeoasolnswthonsbcttansasfsejwsgtqrhwvsentqcwjrbosaosrrhwlrpserhwjlsenrmsonseoashyonotbtalsonsvtvshootjoelajejefqoontqynjnrmsdskorhwbreoswdskorhwkargswontqynjnrmsesshvgnsrwyatdhecjynocgfrcwfatqynojhqkthrkcroosajrvhtkatknsorhwnsasehtyasrovroosajnrmsesshonsvtvshotbvgyasrohseebcjlpsarhwjnrmsesshonssosahrcbttovrhntcwvgltrorhwehjlpsarhwjhentaojdrerbarjwrhwdtqcwjonrmsfsshdtaonjorbosarccrbosaonslqkeonsvravrcrwsonsosrrvthyonsktalscrjhrvthyetvsorcptbgtqrhwvsdtqcwjonrmsfsshdtaondnjcsotnrmsfjooshtbbonsvroosadjonrevjcsotnrmseuqssxswonsqhjmsaesjhotrfrccotatccjootdrawetvstmsadnscvjhyuqseojthotergjrvcrxraqeltvsbatvonswsrwltvsfrlpotosccgtqrccjenrccosccgtqrccjbthsesoocjhyrkjcctdfgnsansrwentqcwergonrojehtodnrojvsrhororcconrojehtojororccrhwdtqcwjonrmsfsshdtaonjorbosarccdtqcwjonrmsfsshdtaondnjcsrbosaonseqhesoerhwonswttagrawerhwonsekajhpcsweoassoerbosaonshtmscerbosaonsosrlqkerbosaonsepjaoeonrooarjcrcthyonsbcttarhwonjerhwetvqlnvtasjojejvkteejfcsotergiqeodnrojvsrhfqorejbrvryjlcrhosahonasdonshsamsejhkroosahethrelasshdtqcwjonrmsfsshdtaondnjcsjbthsesoocjhyrkjcctdtaonatdjhytbbrenrdcrhwoqahjhyotdrawonsdjhwtdentqcwergonrojehtojororcconrojehtodnrojvsrhororcchtjrvhtokajhlsnrvcsohtadrevsrhootfsrvrhrooshwrhoctawthsonrodjccwtotedsccrkatyaseeeoraorelshstaodtrwmjesonskajhlshtwtqforhsregottcwsbsashojrcycrwotfstbqesktcjojllrqojtqerhwvsojlqctqebqcctbnjyneshoshlsfqorfjotfoqesroojvsejhwsswrcvteoajwjlqctqercvteoroojvseonsbttcjyatdtcwjyatdtcwjenrccdsraonsftootvetbvgoatqesaeatccswenrccjkraovgnrjafsnjhwwtjwrasotsrorksrlnjenrccdsradnjosbcrhhscoatqesaerhwdrcpqkthonsfsrlnjnrmsnsrawonsvsavrjweejhyjhysrlnotsrlnjwthtoonjhponroonsgdjccejhyotvsjnrmsesshonsvajwjhyesrdrawthonsdrmseltvfjhyonsdnjosnrjatbonsdrmsefctdhfrlpdnshonsdjhwfctdeonsdrosadnjosrhwfcrlpdsnrmscjhysaswjhonslnrvfsaetbonsesrfgesryjacedasronswdjonesrdsswaswrhwfatdhojccnqvrhmtjlsedrpsqerhwdswatdh";
-	}
-
-	//attempt to crack ceaser 1 (brute force) Sucess (Ezra Pound)
-	/*
-	std::cout << "Do you know who wrote this?\nIf yes then type name, otherwise just hit enter.\n";
-	for (size_t guess = 0; guess < LANGUAGE_SIZE; guess++)
-	{
-		std::string plainTextGuess = ceaserCipher(ceaser, guess);
-
-		std::cout << plainTextGuess << std::endl;
-
-		std::getline(std::cin, name1);
-		if (name1 != "")
-		{
-			std::cout << name1 << " wrote the first cipher. Decryption offset was at " << guess << std::endl;
-			break;
-		}
-	}
-	*/
-
-
-	//attempt to crack alphine 2 (use frequency of each letter found on the internet, and match decrypted text's letters frequences to message) Sucess (Wallace Stevens)
-	/*
-	{
-		std::vector<AlphineEntropyGuess> guesses;
-		for (size_t multiplier = 0; multiplier < LANGUAGE_SIZE; multiplier++)
-			if (std::gcd(multiplier, LANGUAGE_SIZE) == 1)
-				for (size_t offset = 0; offset < LANGUAGE_SIZE; offset++)
-				{
-					AlphineEntropyGuess g;
-					g.plaintText = alphineCipher(alphine, multiplier, offset);
-					g.entropy = notMyCode::getEntropy(g.plaintText);
-					g.multiplier = multiplier;
-					g.offset = offset;
-
-					//adds g to list of guesses
-					guesses.push_back(g);
-				}
-
-		//sorts vector by using < operator, which then uses entropy
-		std::sort(guesses.begin(), guesses.end());
-
-		std::cout << "Do you know who wrote this?\nIf yes then type name, otherwise just hit enter.\n";
-		for (size_t i = 0; i < guesses.size(); i++)
-		{
-			std::cout << guesses[i].plaintText << std::endl;
-			std::getline(std::cin, name2);
-
-			if (name2 != "")
-			{
-				std::cout << name2 << " wrote the second cipher. Alphine multiplier was " << guesses[i].multiplier << " and offset was " << guesses[i].multiplier << "." << std::endl;
-				std::cout << "The plaintext is: " << guesses[i].plaintText << "\nand has entropy of " << guesses[i].entropy << ".\n";
-
-				break;
-			}
-		}
-
-	}
-	*/
-
-
-	//Substitution
-	//Methodology:
-	//	First we try easiest cipher
-
-	size_t countInString[LANGUAGE_SIZE] {};
-
-
-	//count all characters in cipherText
-	for (size_t i = 0; i < substitution.size(); i++)
-	{
-		char number = charToNum(substitution[i]);
-		countInString[number]++;
-	}
-
-	//make array from 0 to LANGUAGE_SIZE
-	char mostCommonEnglishLetters[LANGUAGE_SIZE];
-	for (size_t i = 0; i < LANGUAGE_SIZE; i++)
-		mostCommonEnglishLetters[i] = i;
-
-	//sort array from 0 to LANGUAGE_SIZE based on contents of notMyCode::ENGLISH_FREQS array
-	std::sort(mostCommonEnglishLetters, mostCommonEnglishLetters + LANGUAGE_SIZE, [](char a, char b) {
-		return notMyCode::ENGLISH_FREQS[a] > notMyCode::ENGLISH_FREQS[b]; 
-	});
-
-
-	//do same thing with letters in my text
-	char mostCommonCipherLetters[LANGUAGE_SIZE];
-	for (size_t i = 0; i < LANGUAGE_SIZE; i++)
-		mostCommonCipherLetters[i] = i;
-
-	std::sort(mostCommonCipherLetters, mostCommonCipherLetters + LANGUAGE_SIZE, [countInString](char a, char b) {
-		return countInString[a] > countInString[b];
-	});
-
-	unsigned char cipherGuess[LANGUAGE_SIZE];
-
-	const unsigned char UNASSIGNED = LANGUAGE_SIZE;
-
-	for (size_t i = 0; i < LANGUAGE_SIZE; i++)
-		cipherGuess[i] = UNASSIGNED;
-
-	size_t englishItr = 0;
-	size_t cipherItr = 0;
-	while(true)
-	{
-		while (cipherGuess[mostCommonEnglishLetters[englishItr]] != UNASSIGNED)
-			englishItr++;
-
-		if (englishItr >= LANGUAGE_SIZE)
-			break;
-
-		while (cipherGuess[mostCommonCipherLetters[cipherItr]] != UNASSIGNED && mostCommonCipherLetters[cipherItr] != mostCommonEnglishLetters[englishItr])
-			cipherItr = (cipherItr + 1) % 26;
-
-
-		unsigned char a = mostCommonEnglishLetters[englishItr];
-		unsigned char b = mostCommonCipherLetters[cipherItr];
-
-		cipherGuess[a] = b;
-		cipherGuess[b] = a;
-	}
-
-	std::cout << arbitraryBijectionCipher(substitution, cipherGuess) << std::endl;
-
-	return 0;
-}
+//int main()
+//{
+//	std::string ceaser;
+//	std::string alphine;
+//	std::string substitution;
+//
+//	std::string name1;
+//	std::string name2;
+//	std::string name3;
+//	
+//	//set strings
+//	{
+//		ceaser = "xbpztpeprilxiwndjlpailwxibpcxwpktstithitsndjadcvtcdjvwxrdbtidndjphpvgdlcrwxaslwdwphwpspexvwtpstsupiwtgxpbdastcdjvwcdlidbpztugxtcshxilphndjiwpiqgdztiwtctllddscdlxhpixbtudgrpgkxcvltwpktdcthpepcsdctgddiatiiwtgtqtrdbbtgrtqtilttcjh";
+//		alphine = "osjjtrkxqjjkxqvdcgocgsxitrkueioejsxqfksfzdczrcuarcbcfyctorkfoebioqfoebciokftoexzijkttrkakforkizsazjkcfieorzxkiisitrkwsxkeikztqaksxsfzjkttrkdqwidxcfgvjqakxicfjsituqftrifkaibsbkxijktdkdkvcfsjkqvikkutrkqfjwkubkxqxcitrkkubkxqxqvcokoxksutsykvxqutrkzxkiikxqvzksjjsoycfgtrktrxkkgjsiiyfqditrstirkktqfarcorirkkudxqczkxkzvsftscjiqfoksfzibxkszctiqsitqoqpkxrkxvsokcvrkxrqxfwvkktbxqtxezktrkwoquktqirqarqaoqjzirkcisfzzeudjkttrkjsubsvvclctidksutrkqfjwkubkxqxcitrkkubkxqxqvcokoxksu";
+//		substitution = "csoqeytonshgtqrhwjdnshonssmshjhyjeekasrwtqoryrjheoonsepgcjpsrkrojshosonsajxswqkthrorfcscsoqeytonatqynlsaorjhnrcbwsesaosweoassoeonsvqoosajhyasoasroetbaseocseehjynoejhthshjynolnsrkntoscerhwerdwqeoaseorqarhoedjontgeosaenscceeoassoeonrobtcctdcjpsroswjtqerayqvshotbjhejwjtqejhoshootcsrwgtqotrhtmsadnscvjhyuqseojthtnwthtorepdnrojejocsoqeytrhwvrpstqamjejojhonsattvonsdtvshltvsrhwytorcpjhytbvjlnscrhysctonsgscctdbtyonroaqfejoefrlpqkthonsdjhwtdkrhseonsgscctdevtpsonroaqfejoevqxxcsthonsdjhwtdkrhsecjlpswjoeothyqsjhotonsltahsaetbonssmshjhycjhysaswqkthonskttceonroeorhwjhwarjhecsobrccqkthjoefrlponsettoonrobrccebatvlnjvhsgeecjkkswfgonsosaarlsvrwsreqwwshcsrkrhwessjhyonrojodreretbotlotfsahjynolqacswthlsrftqoonsntqesrhwbsccrecsskrhwjhwsswonsasdjccfsojvsbtaonsgscctdevtpsonroecjwsercthyonseoassoaqffjhyjoefrlpqkthonsdjhwtdkrhseonsasdjccfsojvsonsasdjccfsojvsotkaskrasrbrlsotvssoonsbrlseonrogtqvssoonsasdjccfsojvsotvqawsarhwlasrosrhwojvsbtarcconsdtaperhwwrgetbnrhweonrocjborhwwatkruqseojththgtqakcrosojvsbtagtqrhwojvsbtavsrhwojvsgsobtarnqhwaswjhwsljejtherhwbtarnqhwaswmjejtherhwasmjejthefsbtasonsorpjhytbrotreorhwosrjhonsattvonsdtvshltvsrhwytorcpjhytbvjlnscrhysctrhwjhwsswonsasdjccfsojvsotdthwsawtjwrasrhwwtjwrasojvsotoqahfrlprhwwselshwonseorjadjonrfrcwektojhonsvjwwcstbvgnrjaonsgdjccergntdnjenrjajeyatdjhyonjhvgvtahjhyltrovgltccravtqhojhybjavcgotonslnjhvghslpojsajlnrhwvtwseofqoreesaoswfgrejvkcskjhonsgdjccergfqontdnjeraverhwcsyerasonjhwtjwraswjeoqafonsqhjmsaesjhrvjhqosonsasjeojvsbtawsljejtherhwasmjejthednjlnrvjhqosdjccasmsaesbtajnrmsphtdhonsvrccrcasrwgphtdhonsvrccnrmsphtdhonssmshjhyevtahjhyerbosahtthejnrmsvsreqaswtqovgcjbsdjonltbbssektthejphtdonsmtjlsewgjhydjonrwgjhybrccfshsrononsvqejlbatvrbraonsaattvetntdentqcwjkaseqvsrhwjnrmsphtdhonssgsercasrwgphtdhonsvrcconssgseonrobjzgtqjhrbtavqcroswknaresrhwdnshjrvbtavqcroswekardcjhythrkjhdnshjrvkjhhswrhwdajyycjhythonsdrcconshntdentqcwjfsyjhotekjotqorcconsfqooshwetbvgwrgerhwdrgerhwntdentqcwjkaseqvsrhwjnrmsphtdhonsravercasrwgphtdhonsvrccraveonrorasfarlscsoswrhwdnjosrhwfrasfqojhonscrvkcjynowtdhswdjoncjynofatdhnrjajejoksabqvsbatvrwaseeonrovrpsevsetwjyaseeraveonrocjsrcthyrorfcstadarkrftqorenrdcrhwentqcwjonshkaseqvsrhwntdentqcwjfsyjhenrccjergjnrmsythsrowqeponatqynhraatdeoassoerhwdrolnswonsevtpsonroajesebatvonskjksetbcthscgvshjhenjaoecssmsecsrhjhytqotbdjhwtdejentqcwnrmsfsshrkrjatbaryyswlcrdeelqoocjhyrlateeonsbcttaetbejcshoesrerhwonsrbosahtthonssmshjhyecsskeetksrlsbqccgevttonswfgcthybjhysaerecsskojaswtajovrcjhysaeeoasolnswthonsbcttansasfsejwsgtqrhwvsentqcwjrbosaosrrhwlrpserhwjlsenrmsonseoashyonotbtalsonsvtvshootjoelajejefqoontqynjnrmsdskorhwbreoswdskorhwkargswontqynjnrmsesshvgnsrwyatdhecjynocgfrcwfatqynojhqkthrkcroosajrvhtkatknsorhwnsasehtyasrovroosajnrmsesshonsvtvshotbvgyasrohseebcjlpsarhwjnrmsesshonssosahrcbttovrhntcwvgltrorhwehjlpsarhwjhentaojdrerbarjwrhwdtqcwjonrmsfsshdtaonjorbosarccrbosaonslqkeonsvravrcrwsonsosrrvthyonsktalscrjhrvthyetvsorcptbgtqrhwvsdtqcwjonrmsfsshdtaondnjcsotnrmsfjooshtbbonsvroosadjonrevjcsotnrmseuqssxswonsqhjmsaesjhotrfrccotatccjootdrawetvstmsadnscvjhyuqseojthotergjrvcrxraqeltvsbatvonswsrwltvsfrlpotosccgtqrccjenrccosccgtqrccjbthsesoocjhyrkjcctdfgnsansrwentqcwergonrojehtodnrojvsrhororcconrojehtojororccrhwdtqcwjonrmsfsshdtaonjorbosarccdtqcwjonrmsfsshdtaondnjcsrbosaonseqhesoerhwonswttagrawerhwonsekajhpcsweoassoerbosaonshtmscerbosaonsosrlqkerbosaonsepjaoeonrooarjcrcthyonsbcttarhwonjerhwetvqlnvtasjojejvkteejfcsotergiqeodnrojvsrhfqorejbrvryjlcrhosahonasdonshsamsejhkroosahethrelasshdtqcwjonrmsfsshdtaondnjcsjbthsesoocjhyrkjcctdtaonatdjhytbbrenrdcrhwoqahjhyotdrawonsdjhwtdentqcwergonrojehtojororcconrojehtodnrojvsrhororcchtjrvhtokajhlsnrvcsohtadrevsrhootfsrvrhrooshwrhoctawthsonrodjccwtotedsccrkatyaseeeoraorelshstaodtrwmjesonskajhlshtwtqforhsregottcwsbsashojrcycrwotfstbqesktcjojllrqojtqerhwvsojlqctqebqcctbnjyneshoshlsfqorfjotfoqesroojvsejhwsswrcvteoajwjlqctqercvteoroojvseonsbttcjyatdtcwjyatdtcwjenrccdsraonsftootvetbvgoatqesaeatccswenrccjkraovgnrjafsnjhwwtjwrasotsrorksrlnjenrccdsradnjosbcrhhscoatqesaerhwdrcpqkthonsfsrlnjnrmsnsrawonsvsavrjweejhyjhysrlnotsrlnjwthtoonjhponroonsgdjccejhyotvsjnrmsesshonsvajwjhyesrdrawthonsdrmseltvfjhyonsdnjosnrjatbonsdrmsefctdhfrlpdnshonsdjhwfctdeonsdrosadnjosrhwfcrlpdsnrmscjhysaswjhonslnrvfsaetbonsesrfgesryjacedasronswdjonesrdsswaswrhwfatdhojccnqvrhmtjlsedrpsqerhwdswatdh";
+//	}
+//
+//	//attempt to crack ceaser 1 (brute force) Sucess (Ezra Pound)
+//	/*
+//	std::cout << "Do you know who wrote this?\nIf yes then type name, otherwise just hit enter.\n";
+//	for (size_t guess = 0; guess < LANGUAGE_SIZE; guess++)
+//	{
+//		std::string plainTextGuess = ceaserCipher(ceaser, guess);
+//
+//		std::cout << plainTextGuess << std::endl;
+//
+//		std::getline(std::cin, name1);
+//		if (name1 != "")
+//		{
+//			std::cout << name1 << " wrote the first cipher. Decryption offset was at " << guess << std::endl;
+//			break;
+//		}
+//	}
+//	*/
+//
+//
+//	//attempt to crack alphine 2 (use frequency of each letter found on the internet, and match decrypted text's letters frequences to message) Sucess (Wallace Stevens)
+//	/*
+//	{
+//		std::vector<AlphineEntropyGuess> guesses;
+//		for (size_t multiplier = 0; multiplier < LANGUAGE_SIZE; multiplier++)
+//			if (std::gcd(multiplier, LANGUAGE_SIZE) == 1)
+//				for (size_t offset = 0; offset < LANGUAGE_SIZE; offset++)
+//				{
+//					AlphineEntropyGuess g;
+//					g.plaintText = alphineCipher(alphine, multiplier, offset);
+//					g.entropy = notMyCode::getEntropy(g.plaintText);
+//					g.multiplier = multiplier;
+//					g.offset = offset;
+//
+//					//adds g to list of guesses
+//					guesses.push_back(g);
+//				}
+//
+//		//sorts vector by using < operator, which then uses entropy
+//		std::sort(guesses.begin(), guesses.end());
+//
+//		std::cout << "Do you know who wrote this?\nIf yes then type name, otherwise just hit enter.\n";
+//		for (size_t i = 0; i < guesses.size(); i++)
+//		{
+//			std::cout << guesses[i].plaintText << std::endl;
+//			std::getline(std::cin, name2);
+//
+//			if (name2 != "")
+//			{
+//				std::cout << name2 << " wrote the second cipher. Alphine multiplier was " << guesses[i].multiplier << " and offset was " << guesses[i].multiplier << "." << std::endl;
+//				std::cout << "The plaintext is: " << guesses[i].plaintText << "\nand has entropy of " << guesses[i].entropy << ".\n";
+//
+//				break;
+//			}
+//		}
+//
+//	}
+//	*/
+//
+//
+//	//Substitution
+//	//Methodology:
+//	//	First we try easiest cipher
+//
+//	size_t countInString[LANGUAGE_SIZE] {};
+//
+//
+//	//count all characters in cipherText
+//	for (size_t i = 0; i < substitution.size(); i++)
+//	{
+//		char number = charToNum(substitution[i]);
+//		countInString[number]++;
+//	}
+//
+//	//make array from 0 to LANGUAGE_SIZE
+//	char mostCommonEnglishLetters[LANGUAGE_SIZE];
+//	for (size_t i = 0; i < LANGUAGE_SIZE; i++)
+//		mostCommonEnglishLetters[i] = i;
+//
+//	//sort array from 0 to LANGUAGE_SIZE based on contents of notMyCode::ENGLISH_FREQS array
+//	std::sort(mostCommonEnglishLetters, mostCommonEnglishLetters + LANGUAGE_SIZE, [](char a, char b) {
+//		return notMyCode::ENGLISH_FREQS[a] > notMyCode::ENGLISH_FREQS[b]; 
+//	});
+//
+//
+//	//do same thing with letters in my text
+//	char mostCommonCipherLetters[LANGUAGE_SIZE];
+//	for (size_t i = 0; i < LANGUAGE_SIZE; i++)
+//		mostCommonCipherLetters[i] = i;
+//
+//	std::sort(mostCommonCipherLetters, mostCommonCipherLetters + LANGUAGE_SIZE, [countInString](char a, char b) {
+//		return countInString[a] > countInString[b];
+//	});
+//
+//	unsigned char cipherGuess[LANGUAGE_SIZE];
+//
+//	const unsigned char UNASSIGNED = LANGUAGE_SIZE;
+//
+//	for (size_t i = 0; i < LANGUAGE_SIZE; i++)
+//		cipherGuess[i] = UNASSIGNED;
+//
+//	size_t englishItr = 0;
+//	size_t cipherItr = 0;
+//	while(true)
+//	{
+//		while (cipherGuess[mostCommonEnglishLetters[englishItr]] != UNASSIGNED)
+//			englishItr++;
+//
+//		if (englishItr >= LANGUAGE_SIZE)
+//			break;
+//
+//		while (cipherGuess[mostCommonCipherLetters[cipherItr]] != UNASSIGNED && mostCommonCipherLetters[cipherItr] != mostCommonEnglishLetters[englishItr])
+//			cipherItr = (cipherItr + 1) % 26;
+//
+//
+//		unsigned char a = mostCommonEnglishLetters[englishItr];
+//		unsigned char b = mostCommonCipherLetters[cipherItr];
+//
+//		cipherGuess[a] = b;
+//		cipherGuess[b] = a;
+//	}
+//
+//	std::cout << arbitraryBijectionCipher(substitution, cipherGuess) << std::endl;
+//
+//	return 0;
+//}
 
 std::string ceaserCipher(const std::string& plainText, int offset)
 {
